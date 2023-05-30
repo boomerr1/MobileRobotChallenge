@@ -1,16 +1,10 @@
-from picamera2 import Picamera2, Preview
 import picar_4wd as fc
 import time
-from imutils import paths
 import imutils
 import numpy as np
 import cv2
-from PIL import Image
-import matplotlib.pyplot as plt
-from challenge_20 import turn_deg
-import challenge_11 as c1
-import imgstitch
-import os
+from challenge_2 import turn_deg
+import challenge_1 as c1
 
 def main(plot=False):
 	direction = input('left or right? (l/r)')
