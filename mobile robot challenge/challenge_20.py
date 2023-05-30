@@ -1,13 +1,5 @@
-from picamera2 import Picamera2, Preview
 import picar_4wd as fc
 import time
-from imutils import paths
-import imutils
-import numpy as np
-import cv2
-import PIL.Image
-import matplotlib.pyplot as plt
-
 from challenge_11 import estimate_distance, drive_distance
 
 def turn_deg(direction, degrees=90):
