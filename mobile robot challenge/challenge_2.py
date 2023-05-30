@@ -1,6 +1,6 @@
 import picar_4wd as fc
 import time
-from challenge_11 import estimate_distance, drive_distance
+from challenge_1 import estimate_distance, drive_distance
 
 def turn_deg(direction, degrees=90):
 	ninety_deg_time = 0.94
