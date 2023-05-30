@@ -2,12 +2,9 @@
 from picamera2 import Picamera2, Preview
 import picar_4wd as fc
 import time
-from imutils import paths
 import imutils
 import numpy as np
 import cv2
-import PIL.Image
-import matplotlib.pyplot as plt
 
 def capture():
 	picam2 = Picamera2()
