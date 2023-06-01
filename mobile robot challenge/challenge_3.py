@@ -64,15 +64,13 @@ def main(plot=False):
 		degrees = object_offset * 0.1
 	turn_deg(direction, abs(degrees))
 
-	FOCAL_LENGTH = 4.74 # in mm
+	FOCAL_LENGTH = 2.75 # in mm
 	REAL_HEIGHT = 70 # in mm
 	IMAGE_HEIGHT = 480 # in px
 	SENSOR_HEIGHT = 3.63 # in mm
 	HEIGHT_OFFSET = 130	
 	
-	distance = (FOCAL_LENGTH * REAL_HEIGHT * IMAGE_HEIGHT) / (h * SENSOR_HEIGHT)
-
-	true_distance = np.sqrt(HEIGHT_OFFSET**2 + distance**2)
+	true_distance = (FOCAL_LENGTH * REAL_HEIGHT * IMAGE_HEIGHT) / (h * SENSOR_HEIGHT)
 
 	error = (true_distance - 962)*0.155
 	true_distance -= error
