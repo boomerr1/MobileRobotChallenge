@@ -1,4 +1,3 @@
-
 from picamera2 import Picamera2, Preview
 import picar_4wd as fc
 import time
@@ -25,10 +24,10 @@ def detect_obj(image):
 	
 
 def estimate_distance(plot=True):
-	FOCAL_LENGTH = 4.74 # in mm
+	FOCAL_LENGTH = 2.75 # in mm: https://www.raspberrypi.com/documentation/accessories/camera.html
 	REAL_HEIGHT = 70 # in mm
 	IMAGE_HEIGHT = 480 # in px
-	SENSOR_HEIGHT = 3.63 # in mm
+	SENSOR_HEIGHT = 3.63 # in mm: https://www.raspberrypi.com/documentation/accessories/camera.html
 	HEIGHT_OFFSET = 130
 	tr = 0.2
 
@@ -61,10 +60,7 @@ def estimate_distance(plot=True):
 		#show(sharpen)
 		
 	
-	distance = (FOCAL_LENGTH * REAL_HEIGHT * IMAGE_HEIGHT) / (h * SENSOR_HEIGHT)
-
-	true_distance = np.sqrt(HEIGHT_OFFSET**2 + distance**2)
-	print('distance without correction:',true_distance)
+	true_distance = (FOCAL_LENGTH * REAL_HEIGHT * IMAGE_HEIGHT) / (h * SENSOR_HEIGHT)
 
 	error = (true_distance - 962)*0.155
 	true_distance -= error
