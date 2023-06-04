@@ -7,12 +7,12 @@ import sys
 
 
 # # RPi's IP
-# SERVER_IP = "192.168.99.227"
-# SERVER_PORT = 8888
+SERVER_IP = "192.168.50.64"
+SERVER_PORT = 8888
 
-# print("Starting socket: TCP...")
-# server_addr = (SERVER_IP, SERVER_PORT)
-# socket_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print("Starting socket: TCP...")
+server_addr = (SERVER_IP, SERVER_PORT)
+socket_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
 
@@ -23,7 +23,7 @@ move_k = 20
 commandDict = {'right':'10','left':'01','unKnown':'-1','hit the target!':'11','miss':'00'
                ,'Shooting mode':'000', 'Movement mode':'100'}
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False,
@@ -43,16 +43,16 @@ commandSending = ''
 flag = 1
 
 #### connect to raspberry pi
-# while True:
-#     try:
-#         print("Connecting to server @ %s:%d..." % (SERVER_IP, SERVER_PORT))
-#         socket_tcp.connect(server_addr)
-#         flag = 1
-#         break
-#     except Exception:
-#         print("Can't connect to server,try it latter!")
-#         time.sleep(1)
-#         continue
+while True:
+    try:
+        print("Connecting to server @ %s:%d..." % (SERVER_IP, SERVER_PORT))
+        socket_tcp.connect(server_addr)
+        flag = 1
+        break
+    except Exception:
+        print("Can't connect to server,try it latter!")
+        time.sleep(1)
+        continue
 
 def get_info():
     # dis_5_17
@@ -140,7 +140,7 @@ if flag == 1:
         # if 12 in distanceDict and distanceDict[12] > 0.4:
         if 12 in distanceDict and distanceDict[12] > move_k*dis_5_17:
             ### enter the moving mode
-            # socket_tcp.send(str.encode('100'))
+            socket_tcp.send(str.encode('100'))
             time.sleep(2)
             
             while True:
@@ -165,7 +165,7 @@ if flag == 1:
                     commandSending = 'movement mode'
                     
                     ## send message to raspberry pi
-                    # socket_tcp.send(str.encode(commandSending))
+                    socket_tcp.send(str.encode(commandSending))
 
                     ## reset data to 0
                     frameNum = 0
@@ -181,13 +181,13 @@ if flag == 1:
                 if MaxId == 4:
                     for i in range(10):
                         print("----------right------------")
-                    # socket_tcp.send(str.encode('10')) 
+                    socket_tcp.send(str.encode('10')) 
                     command == 'right'
                     break
                 if MaxId == 8:
                     for i in range(10):
                         print("----------left------------")
-                    # socket_tcp.send(str.encode('01'))
+                    socket_tcp.send(str.encode('01'))
                     command == 'left'
                     break
 
@@ -234,7 +234,7 @@ if flag == 1:
                 commandSending = commandDict['unKnown']
             
             ## send message to raspberry pi
-            # socket_tcp.send(str.encode(commandSending))
+            socket_tcp.send(str.encode(commandSending))
 
             ## reset data to 0
             frameNum = 0
