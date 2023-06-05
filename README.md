@@ -4,7 +4,7 @@ The official repository of the Yetistroyer: 2023 Mobile Robot Challenge as part 
 The techique details are briefly discussed in the report.
 
 ## Installation
-picar_4wd, piicamera2, imutils, cv2 and numpy are needed to implement this project.
+picar_4wd, picamera2, imutils, cv2 and numpy are needed to implement this project.
 picar_4wd: https://github.com/sunfounder/picar-4wd
 
 ```
